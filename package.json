@@ -1,0 +1,21 @@
+{
+  "name": "iotacss-type",
+  "version": "0.1.0",
+  "description": "Typography object for iotaCSS",
+  "main": "_objects.type.scss",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:iotacss/objects.type.git"
+  },
+  "keywords": [
+    "iotacss",
+    "css",
+    "bem",
+    "oocss"
+  ],
+  "dependencies": {
+    "iotacss-default": "^0.1.1",
+    "iotacss-breakpoint": "^0.1.0"
+  },
+  "author": "Dimitris Psaropoulos <info@harby.me>"
+}

@@ -1,0 +1,84 @@
+// Type Object
+
+
+
+
+// Dependencies
+//   Settings.Default
+//   Settings.Breakpoint
+
+
+
+
+// Options
+
+$iota-type              : true;
+$iota-type-namespace    : 'type-' !default;
+$iota-type-sizes-base   : () !default;
+$iota-type-sizes-extra  : () !default;
+
+
+
+
+// Private Mixins
+
+@mixin _iota-type-extract-breakpoint-sizes($map) {
+  
+  @each $breakpoint, $sizes in $map {
+     
+    @if ( $breakpoint == null ) {
+      
+      @include _iota-type-extract-sizes($sizes);
+    
+    } 
+    
+    @else {
+    
+      @media #{map-get($iota-breakpoint-sizes, $breakpoint)} {
+    
+        @include _iota-type-extract-sizes($sizes);
+    
+      }
+    
+    }
+      
+  }
+  
+}
+
+
+@mixin _iota-type-extract-sizes($sizes) {
+  
+  @if ( length($sizes) == 2 ) {
+    font-size: nth($sizes, 1);
+    line-height: nth($sizes, 2);
+  }
+  @else {
+    font-size: $sizes;  
+  }
+  
+}
+
+
+
+
+// Public Mixins
+
+@mixin iota-type-base {
+  
+  @include _iota-type-extract-breakpoint-sizes($iota-type-sizes-base);
+
+}
+
+
+
+
+// Type Sizes
+
+@each $type, $sizes in $iota-type-sizes-extra {
+  
+  .#{$iota-object-namespace}#{$iota-type-namespace}#{$type} {
+    @include _iota-type-extract-breakpoint-sizes($sizes);
+  }
+  
+}
