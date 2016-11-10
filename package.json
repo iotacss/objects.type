@@ -1,6 +1,6 @@
 {
-  "name": "iotacss-type",
-  "version": "0.1.0",
+  "name": "iotacss-objs-type",
+  "version": "1.0.0",
   "description": "Typography object for iotaCSS",
   "main": "_objects.type.scss",
   "repository": {

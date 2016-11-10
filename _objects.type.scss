@@ -3,40 +3,35 @@
 
 
 
-// Dependencies
-//   Settings.Default
-//   Settings.Breakpoint
-
-
-
-
 // Options
 
-$iota-type              : true;
-$iota-type-namespace    : 'type-' !default;
-$iota-type-sizes-base   : () !default;
-$iota-type-sizes-extra  : () !default;
+$iota-objs-type              : true;
+
+$iota-objs-type-namespace    : 'type-' !default;
+
+$iota-objs-type-sizes-base   : () !default;
+$iota-objs-type-sizes-extra  : () !default;
 
 
 
 
 // Private Mixins
 
-@mixin _iota-type-extract-breakpoint-sizes($map) {
+@mixin _iota-objs-type-extract-breakpoint-sizes($map) {
   
   @each $breakpoint, $sizes in $map {
      
     @if ( $breakpoint == null ) {
       
-      @include _iota-type-extract-sizes($sizes);
+      @include _iota-objs-type-extract-sizes($sizes);
     
     } 
     
     @else {
     
-      @media #{map-get($iota-breakpoint-sizes, $breakpoint)} {
+      @media #{map-get($iota-global-breakpoints, $breakpoint)} {
     
-        @include _iota-type-extract-sizes($sizes);
+        @include _iota-objs-type-extract-sizes($sizes);
     
       }
     
@@ -47,7 +42,7 @@ $iota-type-sizes-extra  : () !default;
 }
 
 
-@mixin _iota-type-extract-sizes($sizes) {
+@mixin _iota-objs-type-extract-sizes($sizes) {
   
   @if ( length($sizes) == 2 ) {
     font-size: nth($sizes, 1);
@@ -64,9 +59,9 @@ $iota-type-sizes-extra  : () !default;
 
 // Public Mixins
 
-@mixin iota-type-base {
+@mixin iota-objs-type-base {
   
-  @include _iota-type-extract-breakpoint-sizes($iota-type-sizes-base);
+  @include _iota-objs-type-extract-breakpoint-sizes($iota-objs-type-sizes-base);
 
 }
 
@@ -75,10 +70,10 @@ $iota-type-sizes-extra  : () !default;
 
 // Type Sizes
 
-@each $type, $sizes in $iota-type-sizes-extra {
+@each $type, $sizes in $iota-objs-type-sizes-extra {
   
-  .#{$iota-object-namespace}#{$iota-type-namespace}#{$type} {
-    @include _iota-type-extract-breakpoint-sizes($sizes);
+  .#{$iota-global-objects-namespace + $iota-objs-type-namespace + $type} {
+    @include _iota-objs-type-extract-breakpoint-sizes($sizes);
   }
   
 }

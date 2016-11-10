@@ -6,34 +6,29 @@ The type object is responsible for making responsive typography a piece of cake.
 ### Installation ###
 
 ```
-npm install --save iotacss-type
+npm install --save iotacss-objs-type
 ```
-
-
-### Dependencies ###
-
-* [Settings.Default](https://github.com/iotacss/settings.default)
-* [Settings.Breakpoint](https://github.com/iotacss/settings.breakpoint)
 
 
 ### Options ###
 
-```
-$iota-type-namespace    : 'type-' !default;
-$iota-type-sizes-base   : () !default;
-$iota-type-sizes-extra  : () !default;
+```sass
+$iota-objs-type-namespace    : 'type-' !default;
+
+$iota-objs-type-sizes-base   : () !default;
+$iota-objs-type-sizes-extra  : () !default;
 ```
 
 
 ### Example ###
 
 ```sass
-$iota-type-sizes-base: (
+$iota-objs-type-sizes-base: (
   null : ( 14px, 1.3 ),
   sm   : 16px
 );
 
-$iota-type-sizes-extra: (
+$iota-objs-type-sizes-extra: (
   'text-small': (
     null: ( 12px, 1.2 ),
     sm: 14px
@@ -45,7 +40,7 @@ $iota-type-sizes-extra: (
 );
 
 html {
-  @include iota-type-base;
+  @include iota-objs-type-base;
 }
 ```
 
