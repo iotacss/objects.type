@@ -10,12 +10,9 @@
   "keywords": [
     "iotacss",
     "css",
+    "sass",
     "bem",
     "oocss"
   ],
-  "dependencies": {
-    "iotacss-default": "^0.1.1",
-    "iotacss-breakpoint": "^0.1.0"
-  },
   "author": "Dimitris Psaropoulos <info@harby.me>"
 }
