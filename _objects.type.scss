@@ -5,12 +5,13 @@
 
 // Options
 
-$iota-objs-type              : true;
+$iota-objs-type               : true;
 
-$iota-objs-type-namespace    : 'type-' !default;
+$iota-objs-type-namespace     : 'type-' !default;
 
-$iota-objs-type-sizes-base   : () !default;
-$iota-objs-type-sizes-extra  : () !default;
+$iota-objs-type-sizes-base    : () !default;
+$iota-objs-type-sizes-extra   : () !default;
+$iota-objs-type-breakpoints   : $iota-global-breakpoints !default;
 
 
 
@@ -18,27 +19,33 @@ $iota-objs-type-sizes-extra  : () !default;
 // Private Mixins
 
 @mixin _iota-objs-type-extract-breakpoint-sizes($map) {
-  
-  @each $breakpoint, $sizes in $map {
-     
-    @if ( $breakpoint == null ) {
-      
-      @include _iota-objs-type-extract-sizes($sizes);
-    
-    } 
-    
-    @else {
-    
-      @media #{map-get($iota-global-breakpoints, $breakpoint)} {
-    
-        @include _iota-objs-type-extract-sizes($sizes);
-    
-      }
-    
+
+  @if type-of($map) == 'map' {
+
+    @if map-has-key($map, null) {
+
+      @include _iota-objs-type-extract-sizes(map-get($map, null));
+
     }
-      
-  }
   
+    @each $breakpoint, $sizes in $map {
+
+      @if map-has-key($iota-objs-type-breakpoints, $breakpoint) {
+      
+        @media #{map-get($iota-objs-type-breakpoints, $breakpoint)} {
+      
+          @include _iota-objs-type-extract-sizes($sizes);
+
+        }
+
+      }
+
+    }
+
+  }
+
+  @else { font-size: $map; }
+
 }
 
 
@@ -48,6 +55,7 @@ $iota-objs-type-sizes-extra  : () !default;
     font-size: nth($sizes, 1);
     line-height: nth($sizes, 2);
   }
+
   @else {
     font-size: $sizes;  
   }
