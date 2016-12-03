@@ -13,10 +13,11 @@ npm install --save iotacss-objs-type
 ### Options ###
 
 ```sass
-$iota-objs-type-namespace    : 'type-' !default;
+$iota-objs-type-namespace     : 'type-' !default;
 
-$iota-objs-type-sizes-base   : () !default;
-$iota-objs-type-sizes-extra  : () !default;
+$iota-objs-type-sizes-base    : () !default;
+$iota-objs-type-sizes-extra   : () !default;
+$iota-objs-type-breakpoints   : $iota-global-breakpoints !default;
 ```
 
 
