@@ -5,73 +5,12 @@
 
 // Options
 
-$iota-objs-type               : true;
+$iota-objs-type             : true;
 
-$iota-objs-type-namespace     : 'type-' !default;
+$iota-objs-type-namespace   : 'type-' !default;
 
-$iota-objs-type-sizes-base    : () !default;
-$iota-objs-type-sizes-extra   : () !default;
-$iota-objs-type-breakpoints   : $iota-global-breakpoints !default;
-
-
-
-
-// Private Mixins
-
-@mixin _iota-objs-type-extract-breakpoint-sizes($map) {
-
-  @if type-of($map) == 'map' {
-
-    @if map-has-key($map, null) {
-
-      @include _iota-objs-type-extract-sizes(map-get($map, null));
-
-    }
-  
-    @each $breakpoint, $sizes in $map {
-
-      @if map-has-key($iota-objs-type-breakpoints, $breakpoint) {
-      
-        @media #{map-get($iota-objs-type-breakpoints, $breakpoint)} {
-      
-          @include _iota-objs-type-extract-sizes($sizes);
-
-        }
-
-      }
-
-    }
-
-  }
-
-  @else { font-size: $map; }
-
-}
-
-
-@mixin _iota-objs-type-extract-sizes($sizes) {
-  
-  @if ( length($sizes) == 2 ) {
-    font-size: nth($sizes, 1);
-    line-height: nth($sizes, 2);
-  }
-
-  @else {
-    font-size: $sizes;  
-  }
-  
-}
-
-
-
-
-// Public Mixins
-
-@mixin iota-objs-type-base {
-  
-  @include _iota-objs-type-extract-breakpoint-sizes($iota-objs-type-sizes-base);
-
-}
+$iota-objs-type-sizes       : () !default;
+$iota-objs-type-breakpoints : $iota-global-breakpoints !default;
 
 
 
@@ -81,7 +20,7 @@ $iota-objs-type-breakpoints   : $iota-global-breakpoints !default;
 @each $type, $sizes in $iota-objs-type-sizes-extra {
   
   .#{$iota-global-objects-namespace + $iota-objs-type-namespace + $type} {
-    @include _iota-objs-type-extract-breakpoint-sizes($sizes);
+    @include _iota-generate-type-sizes($sizes, $iota-objs-type-breakpoints);
   }
   
 }
