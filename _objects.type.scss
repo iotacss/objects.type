@@ -17,7 +17,7 @@ $iota-objs-type-breakpoints : $iota-global-breakpoints !default;
 
 // Type Sizes
 
-@each $type, $sizes in $iota-objs-type-sizes-extra {
+@each $type, $sizes in $iota-objs-type-sizes {
   
   .#{$iota-global-objects-namespace + $iota-objs-type-namespace + $type} {
     @include _iota-generate-type-sizes($sizes, $iota-objs-type-breakpoints);
